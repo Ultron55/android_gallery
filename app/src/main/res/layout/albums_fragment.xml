@@ -6,22 +6,19 @@
     android:layout_height="match_parent"
     android:background="#03A9F4">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/i1" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/albumsRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#03A9F4"
+        android:scrollIndicators="right"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarTrackVertical="@android:drawable/title_bar_tall"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:context=".ui.albums.AlbumsFragment" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".ui.albums.AlbumsFragment"
+        tools:itemCount="50" />
 </androidx.constraintlayout.widget.ConstraintLayout>

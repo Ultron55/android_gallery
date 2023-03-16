@@ -1,36 +1,31 @@
 package just.truth.galery.ui.albums
 
+import android.net.Uri
+import android.os.Build
+import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import just.truth.galery.R
 
-class AlbumsRVAdapter(val width : Int) : RecyclerView.Adapter<AlbumsRVAdapter.AlbumsHolder>() {
-    val arr = arrayOf(
-        R.drawable.i0,
-        R.drawable.i1,
-        R.drawable.i2,
-        R.drawable.i3,
-        R.drawable.i4,
-        R.drawable.i5,
-        R.drawable.i6,
-        R.drawable.i6
-    )
-
+class AlbumsRVAdapter(val width : Int, val imageList : ArrayList<Uri>) : RecyclerView.Adapter<AlbumsRVAdapter.AlbumsHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumsHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.albums_item, parent, false)
         return AlbumsHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onBindViewHolder(holder: AlbumsHolder, position: Int) {
-        holder.imageV.setImageDrawable(holder.imageV.context.getDrawable(arr[position]))
+        val t = holder.imageV.context.contentResolver.loadThumbnail(imageList[position], Size(360, 360), null)
+        holder.imageV.setImageBitmap(t)
         holder.imageV.layoutParams.height = width / 2
     }
 
-    override fun getItemCount(): Int = arr.size
+    override fun getItemCount(): Int = imageList.size
 
     class AlbumsHolder (view: View) : RecyclerView.ViewHolder(view) {
         val imageV : ImageView = view.findViewById(R.id.albums_IMG_item)
