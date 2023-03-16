@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="#03A9F4">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/i1" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/albumsRV"
         android:layout_width="0dp"
@@ -14,6 +22,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:context=".ui.albums.AlbumsFragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
