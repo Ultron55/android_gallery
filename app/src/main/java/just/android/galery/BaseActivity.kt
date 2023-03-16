@@ -1,4 +1,4 @@
-package just.truth.galery
+package just.android.galery
 
 import android.Manifest
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -8,15 +8,12 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
-import just.truth.galery.databinding.BaseMainBinding
+import just.android.galery.databinding.BaseMainBinding
 
 @AndroidEntryPoint
 class BaseActivity : AppCompatActivity() {

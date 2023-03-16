@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_albums"
-        android:name="just.truth.galery.ui.albums.AlbumsFragment"
+        android:name="just.android.galery.ui.albums.AlbumsFragment"
         android:label="@string/albums"
         tools:layout="@layout/albums_fragment" />
 
     <fragment
         android:id="@+id/nav_dashboard"
-        android:name="just.truth.galery.ui.dashboard.DashboardFragment"
+        android:name="just.android.galery.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/nav_notifications"
-        android:name="just.truth.galery.ui.notifications.NotificationsFragment"
+        android:name="just.android.galery.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

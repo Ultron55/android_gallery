@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "just.truth.galery"
+    namespace = "just.android.galery"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "just.truth.galery"
+        applicationId = "just.android.galery"
         minSdk = 26
         targetSdk = 33
         versionCode = 1

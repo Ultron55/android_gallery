@@ -1,4 +1,4 @@
-package just.truth.galery
+package just.android.galery
 
 import android.util.Log
 

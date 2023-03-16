@@ -1,8 +1,7 @@
-package just.truth.galery.ui.albums
+package just.android.galery.ui.albums
 
 import android.app.Activity
 import android.content.ContentUris
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -11,15 +10,13 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
-import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import just.truth.galery.LLL
-import just.truth.galery.databinding.AlbumsFragmentBinding
+import just.android.galery.databinding.AlbumsFragmentBinding
 
 class AlbumsFragment : Fragment() {
 

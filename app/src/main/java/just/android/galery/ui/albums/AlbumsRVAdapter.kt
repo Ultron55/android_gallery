@@ -1,4 +1,4 @@
-package just.truth.galery.ui.albums
+package just.android.galery.ui.albums
 
 import android.net.Uri
 import android.os.Build
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import just.truth.galery.R
+import just.android.galery.R
 
 class AlbumsRVAdapter(val width : Int, val imageList : ArrayList<Uri>) : RecyclerView.Adapter<AlbumsRVAdapter.AlbumsHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumsHolder {
