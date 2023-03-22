@@ -43,13 +43,11 @@ class BaseActivity : AppCompatActivity() {
             == PackageManager.PERMISSION_GRANTED
         )
         {
-            Log.d("LLL", "true")
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
             Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
         )
         {
-            Log.d("LLL", "true")
         }
     }
 
@@ -87,7 +85,6 @@ class BaseActivity : AppCompatActivity() {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                Log.d("LLL", "checkprem")
                 val permissions = arrayOf(
                     READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -107,20 +104,16 @@ class BaseActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.d("LLL", "onRequestPermissionsResult")
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                Log.d("LLL", "onRequestPermissionsResult R")
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
-                    Log.d("LLL", "onRequestPermissionsResult Rd")
                     startDone()
                 }
             }
             else if (grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && grantResults[1] == PackageManager.PERMISSION_GRANTED)
             {
-                Log.d("LLL", "onRequestPermissionsResult else")
                 startDone()
             }
         } catch (e : Exception)

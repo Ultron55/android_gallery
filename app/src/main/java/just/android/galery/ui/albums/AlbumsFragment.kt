@@ -2,7 +2,6 @@ package just.android.galery.ui.albums
 
 import android.app.Activity
 import android.content.ContentUris
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -14,18 +13,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import just.android.galery.R
 import just.android.galery.databinding.AlbumsFragmentBinding
+import just.android.galery.utils.ImageData
+import just.android.galery.utils.Numbers
 
 class AlbumsFragment : Fragment() {
-
 
     private var _binding: AlbumsFragmentBinding? = null
     private val binding get() = _binding!!
 
     lateinit var adapter : AlbumsRVAdapter
-    val imageList = ArrayList<Uri>()
+    val imageDataList = ArrayList<ImageData>()
     val handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(
@@ -40,7 +42,8 @@ class AlbumsFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.albumsRV.layoutManager = GridLayoutManager(requireContext(), 2)
+        val layoutManager = GridLayoutManager(requireContext(), Numbers.columncount)
+        binding.albumsRV.layoutManager = layoutManager
         queryImageStorage()
     }
 
@@ -51,7 +54,9 @@ class AlbumsFragment : Fragment() {
                 MediaStore.Images.Media.DISPLAY_NAME,
                 MediaStore.Images.Media.SIZE,
                 MediaStore.Images.Media.DATE_TAKEN,
-                MediaStore.Images.Media._ID
+                MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.WIDTH,
+                MediaStore.Images.Media.HEIGHT,
             )
             val imageSortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
             val cursor = requireActivity().contentResolver.query(
@@ -67,18 +72,30 @@ class AlbumsFragment : Fragment() {
                     val nameColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
                     val sizeColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)
                     val dateColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_TAKEN)
+                    val widthColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH)
+                    val heightColumn = it.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT)
                     while (it.moveToNext()) {
                         val id = it.getLong(idColumn)
-                        val name = it.getString(nameColumn)
-                        val size = it.getString(sizeColumn)
                         val date = it.getString(dateColumn)
-                        val contentUri = ContentUris.withAppendedId(
-                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                            id
+                        imageDataList.add(
+                            ImageData(
+                                id,
+                                it.getString(nameColumn).toString(),
+                                it.getString(sizeColumn).toString(),
+                                date,
+                                it.getString(widthColumn).toInt(),
+                                it.getString(heightColumn).toInt(),
+                                ContentUris.withAppendedId(
+                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
+                                )
+                            )
                         )
-                        imageList.add(contentUri)
                     }
-                    adapter = AlbumsRVAdapter(requireActivity().screenParams(), imageList)
+
+                    adapter = AlbumsRVAdapter(
+                        ResourcesCompat.getDrawable(resources, R.drawable.draw_null, null)!!,
+                        imageDataList
+                    )
                     handler.post { binding.albumsRV.adapter = adapter }
                 } ?: kotlin.run {
                     Log.e("TAG", "Cursor is null!")

@@ -56,6 +56,10 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.44.2")
     implementation ("com.google.android.play:core-ktx:1.8.1")
     "kapt" ("com.google.dagger:hilt-compiler:2.44.2")
+
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
 }
 kapt {
     correctErrorTypes = true

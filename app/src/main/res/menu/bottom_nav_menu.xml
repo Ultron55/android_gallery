@@ -5,7 +5,6 @@
         android:id="@+id/nav_albums"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/albums" />
-
     <item
         android:id="@+id/nav_dashboard"
         android:icon="@drawable/ic_home_black_24dp"
