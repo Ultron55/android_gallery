@@ -1,7 +1,6 @@
 package just.android.galery.ui.albums
 
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import just.android.galery.LLL
+import just.android.galery.utils.LLL
 import just.android.galery.R
 import just.android.galery.utils.ImageData
 import just.android.galery.utils.Numbers

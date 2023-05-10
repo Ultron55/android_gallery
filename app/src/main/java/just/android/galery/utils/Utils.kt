@@ -1,4 +1,4 @@
-package just.android.galery
+package just.android.galery.utils
 
 import android.util.Log
 
