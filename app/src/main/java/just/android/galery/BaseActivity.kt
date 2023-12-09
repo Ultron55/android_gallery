@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import just.android.galery.databinding.BaseMainBinding
@@ -24,7 +24,10 @@ class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = BaseMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.navView.setupWithNavController(findNavController(R.id.nav_host_base))
+        val navController =
+            (supportFragmentManager
+                .findFragmentById(binding.navHostBase.id) as NavHostFragment).navController
+        binding.navView.setupWithNavController(navController)
         checkPermission()
     }
 
@@ -41,13 +44,12 @@ class BaseActivity : AppCompatActivity() {
             ) == PackageManager.PERMISSION_GRANTED
             && ActivityCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED
-        )
-        {
+        ) {
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
             Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
-        )
-        {
+        ) {
+            
         }
     }
 
